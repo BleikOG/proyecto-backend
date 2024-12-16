@@ -18,14 +18,14 @@ public class NotasController {
     private NotasService notasService;
 
     // Obtener todas las notas
-    @GetMapping
+    @GetMapping("/listado")
     public ResponseEntity<List<Notas>> getAllNotas() {
         List<Notas> notas = notasService.getAllNotas();
         return new ResponseEntity<>(notas, HttpStatus.OK);
     }
 
     // Obtener una nota por su ID
-    @GetMapping("/{id}")
+    @GetMapping("/listadoId/{id}")
     public ResponseEntity<Notas> getNotaById(@PathVariable Integer id) {
         Optional<Notas> nota = notasService.getNotaById(id);
         return nota.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -33,20 +33,20 @@ public class NotasController {
     }
 
     // Guardar una nueva nota
-    @PostMapping
+    @PostMapping("/registrar")
     public ResponseEntity<Notas> saveNota(@RequestBody Notas nota) {
         Notas savedNota = notasService.saveNota(nota);
         return new ResponseEntity<>(savedNota, HttpStatus.CREATED);
     }
 
     // Eliminar una nota por su ID
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<Void> deleteNota(@PathVariable Integer id) {
         notasService.deleteNota(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/actualizar/{id}")
     public ResponseEntity<Notas> updateNota(@PathVariable Integer id, @RequestBody Notas notaDetails) {
         try {
             Notas updatedNota = notasService.updateNota(id, notaDetails);
