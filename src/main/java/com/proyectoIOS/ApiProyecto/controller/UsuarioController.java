@@ -57,4 +57,14 @@ public class UsuarioController {
         }
         return ResponseEntity.badRequest().body(resultado);
     }
+
+    // Obtener usuario por ID
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<Object> obtenerUsuarioPorId(@PathVariable Long id) {
+        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        }
+        return ResponseEntity.notFound().build();  // Si no se encuentra el usuario
+    }
 }

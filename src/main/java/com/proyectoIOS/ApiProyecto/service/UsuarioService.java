@@ -3,7 +3,9 @@ package com.proyectoIOS.ApiProyecto.service;
 import com.proyectoIOS.ApiProyecto.model.Usuario;
 import com.proyectoIOS.ApiProyecto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Optional;
 
@@ -75,5 +77,9 @@ public class UsuarioService {
             return "Usuario actualizado correctamente.";
         }
         return "Usuario no encontrado.";
+    }
+    // Obtener usuario por ID
+    public Usuario obtenerUsuarioPorId(Long id) {
+        return usuarioRepository.findById(id).orElse(null);  // Devuelve null si no se encuentra el usuario
     }
 }

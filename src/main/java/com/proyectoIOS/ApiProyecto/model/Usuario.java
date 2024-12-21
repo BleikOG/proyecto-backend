@@ -1,5 +1,6 @@
 package com.proyectoIOS.ApiProyecto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
